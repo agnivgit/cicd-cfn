@@ -8,7 +8,7 @@ pipeline {
                 unset AWS_ACCESS_KEY_ID
                 unset AWS_SECRET_ACCESS_KEY
                 unset AWS_SESSION_TOKEN
-                aws_credentials_json=$(aws sts assume-role — role-arn ${DEV_ROLE_ARN} — role-session-name devSession --region us-east-1)
+                aws_credentials_json=$(aws sts assume-role —-role-arn ${DEV_ROLE_ARN} —-role-session-name devSession --region us-east-1)
                 export AWS_ACCESS_KEY_ID=$(echo “$aws_credentials_json” | jq — exit-status — raw-output .Credentials.AccessKeyId)
                 export AWS_SECRET_ACCESS_KEY=$(echo “$aws_credentials_json” | jq — exit-status — raw-output .Credentials.SecretAccessKey)
                 export AWS_SESSION_TOKEN=$(echo “$aws_credentials_json” | jq — exit-status — raw-output .Credentials.SessionToken)
