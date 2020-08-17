@@ -17,10 +17,10 @@ pipeline {
                 '''
               }
             }    
-        stage('Deploy approval'){
-            input "Deploy to prod?"
-            }     
-        stage('Create Stack into Prod Env') {
+        stage('Create Stack into Prod Env'){
+            input{
+                message "Do you want to proceed for production deployment?"
+            }    
             steps {
             sh '''
                 set +x
