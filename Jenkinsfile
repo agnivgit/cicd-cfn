@@ -13,7 +13,7 @@ pipeline {
                 export AWS_SECRET_ACCESS_KEY=$(echo "$creds_json" | jq .Credentials.SecretAccessKey| tr -d '"')
                 export AWS_SESSION_TOKEN=$(echo "$creds_json" | jq .Credentials.SessionToken|tr -d '"')
                 set -x
-                aws cloudformation create-stack --stack-name s3bucket --template-body file://s3_template.json --region us-east-1
+                aws cloudformation deploy --stack-name s3bucket --template-file s3_template.json --region us-east-1 --profile=aws_devops
                 '''
               }
             }    
@@ -32,7 +32,7 @@ pipeline {
                 export AWS_SECRET_ACCESS_KEY=$(echo "$creds_json" | jq .Credentials.SecretAccessKey| tr -d '"')
                 export AWS_SESSION_TOKEN=$(echo "$creds_json" | jq .Credentials.SessionToken|tr -d '"')
                 set -x
-                aws cloudformation create-stack --stack-name s3bucket --template-body file://s3_template.json --region us-east-1
+                aws cloudformation deploy --stack-name s3bucket --template-file s3_template.json --region us-east-1 --profile=aws_devops
                 '''
               }
             }
